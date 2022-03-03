@@ -1,6 +1,8 @@
 'use strict';
 // Get express from node model
 const express = require("express");
+
+const cors = require("cors");
 // read data from JSON file
 const recipes = require("./data.json");
 // Read .env file
@@ -17,6 +19,7 @@ dotenv.config();
 // initializing my server
 const app = express();
 
+app.use(cors());
 // Variables that live in my .env file
 const APIKEY = process.env.APIKEY;
 const PORT = process.env.PORT;
@@ -24,12 +27,12 @@ const DATABASE_URL = process.env.DATABASE_URL;
 
 
 // Initialize the connection
-// const client = new pg.Client(DATABASE_URL);
+const client = new pg.Client(DATABASE_URL);
 
-const client = new pg.Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-});
+// const client = new pg.Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: { rejectUnauthorized: false }
+// });
 
 // Constructor to format the data as I want 
 function Recipe(id, title, readyInMinutes, vegetarian,  sourceUrl, image, summary, instructions){
