@@ -8,5 +8,6 @@ vegetarian BOOLEAN,
 sourceUrl VARCHAR(500),
 image VARCHAR(1000),
 summary VARCHAR(10000),
-instructions VARCHAR(10000)
+instructions VARCHAR(10000),
+comment VARCHAR(10000)
 );
